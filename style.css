@@ -1,0 +1,77 @@
+:root {
+  --maintime: 4s;
+  --delation: 2s;
+  --up: -80px;
+  --mid: -25px;
+  --down: 110px;
+  --center: 20px;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:linear-gradient(to left,#050505, #450505, #AB0A0A, #CE0707);
+}
+
+img {
+  filter: drop-shadow(0px 2px 2px #333);
+  width: 300px;
+}
+
+@keyframes swap {
+  0%  {
+    transform: scale(0.8) translateY(var(--up));
+    z-index: 0;
+  }
+  9% {
+    transform: scale(0.9) translateY(var(--mid));
+    z-index: 20;
+  }
+  33% {
+    transform: scale(0.9) translateY(var(--mid));
+    z-index: 20;
+  }
+  42% {
+    transform: scale(1) translateY(var(--center));
+    z-index: 30;
+  }
+  66% {
+    transform: scale(1) translateY(var(--center));
+    z-index: 30;
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1) translateY(var(--down));
+    opacity: 0;
+  }
+  80% {
+    transform: scale(0.8) translateY(var(--center));
+    opacity: 0;
+    z-index: 10;
+  }
+  90% {
+    transform: scale(0.8) translateY(var(--up));
+    opacity: 1;
+    z-index: 10;
+  }
+}
+
+.card{
+  position: absolute;
+  transform: scale(0.8) translateY(var(--up));
+  opacity: 1;
+  animation: var(--maintime) swap infinite;
+  animation-delay: var(--delation);
+
+}
+.card:nth-of-type(2) {
+  animation-delay: calc(var(--delation) + calc(var(--maintime) / 3));
+  z-index: -1;
+ 
+}
+.card:last-of-type {
+  animation-delay: calc(var(--delation) + var(--maintime) * 2 / 3);
+  z-index: -2;
+}
